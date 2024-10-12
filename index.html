@@ -6,6 +6,11 @@
     <title>Recipe App</title>
     <!-- css -->
     <link rel="stylesheet" href="./styles/style.css" />
+    <!-- * Bs Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
   </head>
   <body>
     <!-- Container -->
@@ -15,7 +20,7 @@
         <!-- logo -->
         <div class="logo">
           <a href="#">
-            <img src="./images/food-logo.png" alt="logo" width="100" />
+            <img src="./images/food-logo.png" alt="logo" />
           </a>
         </div>
         <!-- form -->
@@ -26,27 +31,49 @@
               placeholder="Aramak istediğinizi tarifi giriniz... "
             />
             <button type="submit">
-              <i>icon</i>
+              <i class="bi bi-search"></i>
               <span>Ara</span>
             </button>
           </form>
         </div>
         <!-- likes -->
         <div class="likes">
-          <i>icon</i>
+          <i class="bi bi-bookmark-heart-fill"></i>
           <!-- likes item -->
-          <div class="list"></div>
+          <div class="list">
+            <a href="#">
+              <img
+                src="http://forkify-api.herokuapp.com/images/best_pizza_dough_recipe1b20.jpg"
+                alt=""
+              />
+              <p>Best Pizza</p>
+            </a>
+          </div>
         </div>
       </header>
       <!-- Main Content -->
       <main>
         <!-- results -->
-        <section class="results"></section>
+        <section class="results">
+          <div class="result-link">
+            <img
+              src="http://forkify-api.herokuapp.com/images/586964c174.jpg"
+              alt=""
+            />
+            <div class="data">
+              <h4>Slow Cooker Pulled Meat</h4>
+              <p>All Recipes</p>
+            </div>
+          </div>
+        </section>
         <!-- recipe -->
-        <section class="recipe"></section>
+        <section class="recipe">recipe</section>
         <!-- shopping -->
-        <section class="shopping"></section>
+        <section class="shopping">shopping</section>
       </main>
     </div>
+
+    <!-- * Js Bağlantı -->
+    <script src="./js/main.js" type="module"></script>
   </body>
 </html>
