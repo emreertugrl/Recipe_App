@@ -228,4 +228,11 @@ main .recipe {
 }
 main .shopping {
   border: 1px solid blue;
+}
+
+.loader {
+  margin: 80px auto;
+}
+.loader img {
+  width: 150px;
 }/*# sourceMappingURL=style.css.map */
