@@ -26,3 +26,13 @@ const handleSubmit = async (e) => {
 
 // ! olay izleyicilerl
 elements.form.addEventListener("submit", handleSubmit);
+
+// Sayfa yüklendiğinde ve url değiştiğinde çalışacak fonksiyon
+
+const controlRecipe = (eventName) => {
+  const id = location.hash.replace("#", "");
+};
+// !sayfanın yüklenmesi ve url değişimini izle
+["load", "hashchange"].forEach((eventName) => {
+  window.addEventListener(eventName, controlRecipe);
+});
