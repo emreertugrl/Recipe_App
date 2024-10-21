@@ -1,7 +1,9 @@
 import { Search } from "./api.js";
 import { elements } from "./helper.js";
 import { clearLoader, renderLoader, renderResults } from "./ui.js";
+import { Recipe } from "./recipe.js";
 
+const recipe = new Recipe();
 // ! fonksiyonlar
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -29,8 +31,19 @@ elements.form.addEventListener("submit", handleSubmit);
 
 // Sayfa yüklendiğinde ve url değiştiğinde çalışacak fonksiyon
 
-const controlRecipe = (eventName) => {
+const controlRecipe = async (eventName) => {
   const id = location.hash.replace("#", "");
+  if (id) {
+    renderLoader(elements.recipeArea);
+    try {
+      await recipe.getRecipe(id);
+      //  loader ekrandan akldır
+      clearLoader();
+    } catch (error) {
+      alert("Tarif yüklenemedi");
+      return;
+    }
+  }
 };
 // !sayfanın yüklenmesi ve url değişimini izle
 ["load", "hashchange"].forEach((eventName) => {
