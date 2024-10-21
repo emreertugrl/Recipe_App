@@ -42,6 +42,9 @@ const controlRecipe = async (eventName) => {
       clearLoader();
       // tarif bilgilerini render et
       recipe.renderRecipe(recipe.info);
+
+      // tarif kısmında yer alan arayüz scroll'un düzenlenmesi
+      elements.recipeArea.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       alert("Tarif yüklenemedi");
       return;
@@ -52,3 +55,13 @@ const controlRecipe = async (eventName) => {
 ["load", "hashchange"].forEach((eventName) => {
   window.addEventListener(eventName, controlRecipe);
 });
+
+// !sepet işlemleri
+const handleClick = (e) => {
+  if (e.target.id === "add-to-basket") {
+    // addtobasket tıklanınca ul erişme
+    console.log(e.target.previousElementSibling);
+  }
+};
+// tarif alanında gerçekleşen tıklamaları izle
+elements.recipeArea.addEventListener("click", handleClick);
