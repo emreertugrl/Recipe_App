@@ -22,6 +22,7 @@ const handleSubmit = async (e) => {
       renderResults(search.result);
     } catch (error) {
       alert("Aradığınız kriterlerde uygun tarif bulunamadı");
+      clearLoader();
     }
   }
 };
@@ -39,6 +40,8 @@ const controlRecipe = async (eventName) => {
       await recipe.getRecipe(id);
       //  loader ekrandan akldır
       clearLoader();
+      // tarif bilgilerini render et
+      recipe.renderRecipe(recipe.info);
     } catch (error) {
       alert("Tarif yüklenemedi");
       return;
