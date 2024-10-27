@@ -1,4 +1,4 @@
-import { elements } from "./helper.js";
+import { elements, getFromLocalStorage, setLocalStorage } from "./helper.js";
 
 export class Recipe {
   constructor() {
@@ -7,6 +7,11 @@ export class Recipe {
 
     // malzemeler
     this.ingredients = [];
+
+    // likes
+    this.likes = getFromLocalStorage("likes") || [];
+
+    this.renderLikes();
   }
 
   // Tarif bilgilerini alma
@@ -33,6 +38,36 @@ export class Recipe {
     );
     return html.join("");
   }
+
+  // likelandımı kontrol et
+  isRecipeLikes() {
+    const found = this.likes.find((i) => i.id == this.info.recipe_id);
+    return found;
+  }
+
+  //
+  controlLike() {
+    // likelanan elemanın verilerini al
+    const newObject = {
+      id: this.info.recipe_id,
+      img: this.info.image_url,
+      title: this.info.title,
+    };
+    // eleman likelandı mı
+    if (this.isRecipeLikes()) {
+      this.likes = this.likes.filter((i) => i.id != newObject.id);
+    }
+    // yoksa likeliyoruz
+    else {
+      this.likes.push(newObject);
+    }
+    // local storage'a kaydet
+    setLocalStorage("likes", this.likes);
+
+    this.renderRecipe(this.info);
+
+    this.renderLikes();
+  }
   // tarif bilgilerini ekrana render etme
   renderRecipe(recipe) {
     const markup = `
@@ -43,7 +78,9 @@ export class Recipe {
             />
             <h1>${recipe.title}</h1>
             <div class="like-area">
-              <i class="bi bi-heart"></i>
+              <i id="like-btn" class="bi ${
+                this.isRecipeLikes() ? "bi-heart-fill" : "bi-heart"
+              }"></i>
             </div>
           </figure>
           <div class="ingredients">
@@ -66,5 +103,19 @@ export class Recipe {
           </div>
     `;
     elements.recipeArea.innerHTML = markup;
+  }
+  renderLikes() {
+    const likedHtml = this.likes
+      .map(
+        (item) =>
+          `
+  <a href="${item.id}">
+    <img src="${item.img}"/>
+    <p>${item.title}</p>
+  </a>
+  `
+      )
+      .join("");
+    elements.likeList.innerHTML = likedHtml;
   }
 }

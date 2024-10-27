@@ -385,4 +385,8 @@ main .shopping ul li i {
 }
 .loader img {
   width: 150px;
+}
+
+#like-btn {
+  color: pink;
 }/*# sourceMappingURL=style.css.map */

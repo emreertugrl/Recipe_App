@@ -83,6 +83,11 @@ const handleClick = (e) => {
     // controlBtn();
     controlBtn(basket);
   }
+
+  // like butonuna tıklandıysa
+  if (e.target.id == "like-btn") {
+    recipe.controlLike();
+  }
 };
 
 const deleteItem = (e) => {
