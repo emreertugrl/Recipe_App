@@ -1,5 +1,6 @@
+import { v4 } from "https://jspm.dev/uuid";
 import { Search } from "./api.js";
-import { elements } from "./helper.js";
+import { elements, getFromLocalStorage, setLocalStorage } from "./helper.js";
 import { clearLoader, renderLoader, renderResults } from "./ui.js";
 import { Recipe } from "./recipe.js";
 
@@ -57,11 +58,22 @@ const controlRecipe = async (eventName) => {
 });
 
 // !sepet işlemleri
+let basket = getFromLocalStorage("basket") || [];
 const handleClick = (e) => {
   if (e.target.id === "add-to-basket") {
     // addtobasket tıklanınca ul erişme
-    console.log(e.target.previousElementSibling);
+    recipe.ingredients.forEach((title) => {
+      // yeni obje oluştur
+      const newItem = {
+        id: v4(),
+        title,
+      };
+      // newItem sepete ekle
+      basket.push(newItem);
+    });
+    setLocalStorage("basket", basket);
   }
+  console.log(basket);
 };
 // tarif alanında gerçekleşen tıklamaları izle
 elements.recipeArea.addEventListener("click", handleClick);
