@@ -80,7 +80,26 @@ const handleClick = (e) => {
     // ekrana sepetteki elemanları bas
     renderBasketItem(basket);
   }
-  console.log(basket);
+};
+
+const deleteItem = (e) => {
+  if (e.target.id === "delete-item") {
+    // kapsayıcısına eriş
+    const parent = e.target.parentElement;
+    // seçilen ürünün idsine eriş ve diziden kaldır
+    basket = basket.filter((item) => {
+      item.id != parent.dataset.id;
+    });
+    // locakstorage'i güncelle
+    setLocalStorage("basket", basket);
+    // ekrana sepetteki elemanları bas
+    parent.remove();
+  }
+  // kapsayıcıyı kaldır
+  parent.parentElement.removeChild(parent);
 };
 // tarif alanında gerçekleşen tıklamaları izle
 elements.recipeArea.addEventListener("click", handleClick);
+
+// sepetten eleman silme
+elements.basketList.addEventListener("click", deleteItem);
