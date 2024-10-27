@@ -362,6 +362,7 @@ main .shopping .button-area {
   justify-content: end;
 }
 main .shopping .button-area button {
+  display: none;
   background-color: rgb(221, 0, 0);
   color: white;
   cursor: pointer;

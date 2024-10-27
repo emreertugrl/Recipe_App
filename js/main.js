@@ -79,6 +79,9 @@ const handleClick = (e) => {
     setLocalStorage("basket", basket);
     // ekrana sepetteki elemanları bas
     renderBasketItem(basket);
+
+    // controlBtn();
+    controlBtn(basket);
   }
 };
 
@@ -87,9 +90,7 @@ const deleteItem = (e) => {
     // kapsayıcısına eriş
     const parent = e.target.parentElement;
     // seçilen ürünün idsine eriş ve diziden kaldır
-    basket = basket.filter((item) => {
-      item.id != parent.dataset.id;
-    });
+    basket = basket.filter((item) => item.id != parent.dataset.id);
     // locakstorage'i güncelle
     setLocalStorage("basket", basket);
     // ekrana sepetteki elemanları bas
@@ -97,9 +98,37 @@ const deleteItem = (e) => {
   }
   // kapsayıcıyı kaldır
   parent.parentElement.removeChild(parent);
+
+  controlBtn(basket);
+};
+
+const handleClear = (e) => {
+  const res = confirm("Bütün sepet silinecek!! Emin misiniz?");
+
+  if (res) {
+    // local storage'i temizle
+    setLocalStorage("basket", null);
+    basket = [];
+    // ekrana sepetteki elemanları bas
+    elements.basketList.innerHTML = "";
+
+    controlBtn(basket);
+  }
 };
 // tarif alanında gerçekleşen tıklamaları izle
 elements.recipeArea.addEventListener("click", handleClick);
 
 // sepetten eleman silme
 elements.basketList.addEventListener("click", deleteItem);
+
+// sepeti temizle
+elements.clearBtn.addEventListener("click", handleClear);
+
+// sepetin dolu olma durumuna göre clear btn görünürlüğünü belirleyen komut
+export const controlBtn = (basket) => {
+  if (basket.length > 0) {
+    elements.clearBtn.style.display = "flex";
+  } else {
+    elements.clearBtn.style.display = "none";
+  }
+};

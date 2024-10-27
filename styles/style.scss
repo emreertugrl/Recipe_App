@@ -335,6 +335,7 @@ main {
       display: flex;
       justify-content: end;
       button {
+        display: none;
         background-color: rgb(221, 0, 0);
         color: white;
         cursor: pointer;
