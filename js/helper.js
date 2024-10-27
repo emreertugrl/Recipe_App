@@ -3,6 +3,7 @@ export const elements = {
   searchInput: document.querySelector("form input"),
   resultsList: document.querySelector(".results"),
   recipeArea: document.querySelector(".recipe"),
+  basketList: document.querySelector(".shopping ul"),
 };
 
 // localStorage verileri kaydet

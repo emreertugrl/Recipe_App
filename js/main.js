@@ -1,7 +1,12 @@
 import { v4 } from "https://jspm.dev/uuid";
 import { Search } from "./api.js";
 import { elements, getFromLocalStorage, setLocalStorage } from "./helper.js";
-import { clearLoader, renderLoader, renderResults } from "./ui.js";
+import {
+  clearLoader,
+  renderBasketItem,
+  renderLoader,
+  renderResults,
+} from "./ui.js";
 import { Recipe } from "./recipe.js";
 
 const recipe = new Recipe();
@@ -72,6 +77,8 @@ const handleClick = (e) => {
       basket.push(newItem);
     });
     setLocalStorage("basket", basket);
+    // ekrana sepetteki elemanları bas
+    renderBasketItem(basket);
   }
   console.log(basket);
 };

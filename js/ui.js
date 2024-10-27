@@ -40,3 +40,20 @@ export const renderResults = (recipes) => {
     elements.resultsList.insertAdjacentHTML("beforeend", markup);
   });
 };
+
+// sepete ürünleri ekrana basan fonksiyon
+
+export const renderBasketItem = (items) => {
+  const markUp = items
+    .map(
+      (item) =>
+        `
+    <li>
+        <i class="bi bi-x" id="delete-item"></i>
+        <span>${item.title}</span>
+    </li>
+    `
+    )
+    .join("");
+  elements.basketList.innerHTML = markUp;
+};
