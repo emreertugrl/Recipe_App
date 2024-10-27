@@ -4,6 +4,7 @@ export const elements = {
   resultsList: document.querySelector(".results"),
   recipeArea: document.querySelector(".recipe"),
   basketList: document.querySelector(".shopping ul"),
+  clearBtn: document.querySelector("#clear"),
 };
 
 // localStorage verileri kaydet
